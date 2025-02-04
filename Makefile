@@ -23,6 +23,12 @@ EXTRA_CFLAGS += -Wno-implicit-fallthrough
 # Activates Concurrent Mode if uncommented
 #EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
 
+# Sets wireless regulatory (REGD) sourse to OS
+EXTRA_CFLAGS += -DCONFIG_REGD_SRC_FROM_OS
+
+# May be needed to ensure all channels are scanned
+EXTRA_CFLAGS += -DCONFIG_FORCE_SW_CHANNEL_PLAN
+
 # gcc-12
 EXTRA_CFLAGS += -Wno-address
 EXTRA_CFLAGS += -Wframe-larger-than=1648
