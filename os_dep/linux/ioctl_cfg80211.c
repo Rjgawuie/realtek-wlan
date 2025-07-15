@@ -4940,6 +4940,7 @@ static int cfg80211_rtw_get_channel(struct wiphy *wiphy, struct wireless_dev *wd
       //RTW_INFO("%s dvobj null\n", __func__);
     }
     switch(pHalData->current_channel_bw){
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0))
       case CHANNEL_WIDTH_5:
 	//RTW_INFO("%s width 5\n", __func__);
 	width = NL80211_CHAN_WIDTH_5;
@@ -4950,6 +4951,7 @@ static int cfg80211_rtw_get_channel(struct wiphy *wiphy, struct wireless_dev *wd
 	width = NL80211_CHAN_WIDTH_10;
 	center_freq = control_freq;
 	break;
+#endif
       case CHANNEL_WIDTH_20:
 	//RTW_INFO("%s width 20\n", __func__);
 	width = NL80211_CHAN_WIDTH_20;
