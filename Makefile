@@ -49,7 +49,7 @@ EXTRA_LDFLAGS += --strip-debug
 
 ########################## WIFI IC ############################
 CONFIG_RTL8812A = y
-CONFIG_RTL8821A = y
+CONFIG_RTL8821A = n
 CONFIG_RTL8814A = n
 ######################### Interface ###########################
 CONFIG_USB_HCI = y
@@ -216,9 +216,9 @@ else
 EXTRA_CFLAGS += -DDBG=0
 endif
 
-ifeq ($(CONFIG_RTL8812A)_$(CONFIG_RTL8821A), y_y)
+ifeq ($(CONFIG_RTL8812A)_$(CONFIG_RTL8821A), y_n)
 
-EXTRA_CFLAGS += -DDRV_NAME=\"rtl88xxau_wfb\"
+EXTRA_CFLAGS += -DDRV_NAME=\"rtl88xxau\"
 ifeq ($(CONFIG_USB_HCI), y)
 USER_MODULE_NAME = 88XXau
 endif
@@ -302,7 +302,7 @@ _BTC_FILES += hal/btc/halbtc8192e1ant.o \
 				hal/btc/halbtc8821c2ant.o
 endif
 
-include $(TopDIR)/hal/phydm/phydm.mk
+include $(src)/hal/phydm/phydm.mk
 
 ########### HAL_RTL8812A_RTL8821A #################################
 ifneq ($(CONFIG_RTL8812A)_$(CONFIG_RTL8821A), n_n)
@@ -1534,7 +1534,7 @@ endif
 
 USER_MODULE_NAME ?=
 ifneq ($(USER_MODULE_NAME),)
-MODULE_NAME := $(USER_MODULE_NAME)_wfb
+MODULE_NAME := $(USER_MODULE_NAME)
 endif
 
 ifneq ($(KERNELRELEASE),)
